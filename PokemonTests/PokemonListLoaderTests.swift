@@ -36,8 +36,12 @@ class PokemonListLoader {
     func load(completion: @escaping (PokemonListLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success:
-                completion(.failure(.invalidData))
+            case let .success(data, _):
+                if let _ = try? JSONSerialization.jsonObject(with: data) {
+                    completion(.success([]))
+                } else {
+                    completion(.failure(.invalidData))
+                }
             case .failure:
                 completion(.failure(.connectivity))
             }
@@ -108,6 +112,18 @@ class PokemonListLoaderTests: XCTestCase {
             let invalidJSON = Data("invalid json".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         }
+    }
+
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+        let (sut, client) = makeSUT()
+
+        var capturedResults = [PokemonListLoader.Result]()
+        sut.load { capturedResults.append($0) }
+
+        let emptyListJSON = Data("{\"results\": []}".utf8)
+        client.complete(withStatusCode: 200, data: emptyListJSON)
+
+        XCTAssertEqual(capturedResults, [.success([])])
     }
 
     // MARK: Helpers
