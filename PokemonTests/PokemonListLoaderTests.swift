@@ -8,12 +8,16 @@
 import XCTest
 @testable import Pokemon
 
-class HTTPClient {
-    var requestedURL: URL?
+protocol HTTPClient {
+    func get(from url: URL)
 }
 
 class PokemonListLoader {
+    let client: HTTPClient
     
+    init(client: HTTPClient) {
+        self.client = client
+    }
 }
 
 class PokemonListLoaderTests: XCTestCase {
@@ -27,9 +31,18 @@ class PokemonListLoaderTests: XCTestCase {
     }
 
     func test_init_doesNotRequestLoadData() {
-        let client = HTTPClient()
-        _ = PokemonListLoader()
+        let client = HTTPClientSpy()
+        _ = PokemonListLoader(client: client)
         
         XCTAssertNil(client.requestedURL)
+    }
+    
+    // MARK: Helpers
+    class HTTPClientSpy: HTTPClient {
+        var requestedURL: URL?
+        
+        func get(from url: URL) {
+            requestedURL = url
+        }
     }
 }
