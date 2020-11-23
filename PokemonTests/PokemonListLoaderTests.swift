@@ -39,7 +39,7 @@ class PokemonListLoaderTests: XCTestCase {
     func test_init_doesNotRequestLoadData() {
         let (_, client) = makeSUT()
 
-        XCTAssertNil(client.requestedURL)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
 
     func test_load_requestDataFromURL() {
@@ -47,9 +47,18 @@ class PokemonListLoaderTests: XCTestCase {
 
         sut.load()
         
-        XCTAssertNotNil(client.requestedURL)
+        XCTAssertFalse(client.requestedURLs.isEmpty)
     }
     
+    func test_loadTwice_requestDataFromURLTwice() {
+        let url = URL(string: "http://a-valid.url.com")!
+        let (sut, client) = makeSUT(url: url)
+
+        sut.load()
+        sut.load()
+
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
 
     // MARK: Helpers
     func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
@@ -60,9 +69,10 @@ class PokemonListLoaderTests: XCTestCase {
     
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
+        var requestedURLs = [URL]()
         
         func get(from url: URL) {
-            requestedURL = url
+            requestedURLs.append(url)
         }
     }
 }
