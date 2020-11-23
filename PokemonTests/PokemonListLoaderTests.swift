@@ -9,20 +9,26 @@ import XCTest
 @testable import Pokemon
 
 protocol HTTPClient {
-    func get(from url: URL)
+    func get(from url: URL, completion: @escaping (Error) -> Void)
 }
 
 class PokemonListLoader {
     let client: HTTPClient
     let url: URL
     
+    public enum Error: Swift.Error {
+        case connectivity
+    }
+
     init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    func load() {
-        client.get(from: url)
+    func load(completion: @escaping (Error) -> Void = { _ in }) {
+        client.get(from: url) { error in
+            completion(.connectivity)
+        }
     }
 }
 
@@ -60,6 +66,16 @@ class PokemonListLoaderTests: XCTestCase {
 
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
+    
+    func test_load_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        client.error = NSError(domain: "Test", code: 0)
+
+        var capturedError: PokemonListLoader.Error?
+        sut.load { error in capturedError = error }
+
+        XCTAssertEqual(capturedError, .connectivity)
+    }
 
     // MARK: Helpers
     func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
@@ -69,10 +85,13 @@ class PokemonListLoaderTests: XCTestCase {
     }
     
     class HTTPClientSpy: HTTPClient {
-        var requestedURL: URL?
+        var error: Error?
         var requestedURLs = [URL]()
         
-        func get(from url: URL) {
+        func get(from url: URL, completion: @escaping (Error) -> Void) {
+            if let error = error {
+                completion(error)
+            }
             requestedURLs.append(url)
         }
     }
