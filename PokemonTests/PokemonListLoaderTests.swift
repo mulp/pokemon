@@ -87,14 +87,19 @@ class PokemonListLoaderTests: XCTestCase {
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
 
-        var capturedErrors = [PokemonListLoader.Error]()
-        sut.load { capturedErrors.append($0) }
+        let samples = [199, 201, 300, 400, 500]
 
-        client.complete(withStatusCode: 400)
+        samples.enumerated().forEach { index, code in
+            var capturedErrors = [PokemonListLoader.Error]()
+            sut.load { capturedErrors.append($0) }
 
-        XCTAssertEqual(capturedErrors, [.invalidData])
+            client.complete(withStatusCode: code, at: index)
+
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
 
+    
     // MARK: Helpers
     func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
