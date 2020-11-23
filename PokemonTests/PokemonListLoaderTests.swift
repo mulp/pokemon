@@ -43,11 +43,12 @@ class PokemonListLoaderTests: XCTestCase {
     }
 
     func test_load_requestDataFromURL() {
-        let (sut, client) = makeSUT()
+        let url = URL(string: "http://a-valid.url.com")!
+        let (sut, client) = makeSUT(url: url)
 
         sut.load()
         
-        XCTAssertFalse(client.requestedURLs.isEmpty)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loadTwice_requestDataFromURLTwice() {
