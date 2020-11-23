@@ -18,6 +18,10 @@ class PokemonListLoader {
     init(client: HTTPClient) {
         self.client = client
     }
+    
+    func load() {
+        client.get(from: URL(string: "http://a-valid.url.com")!)
+    }
 }
 
 class PokemonListLoaderTests: XCTestCase {
@@ -36,7 +40,17 @@ class PokemonListLoaderTests: XCTestCase {
         
         XCTAssertNil(client.requestedURL)
     }
+
+    func test_load_requestDataFromURL() {
+        let client = HTTPClientSpy()
+        let sut = PokemonListLoader(client: client)
+
+        sut.load()
+        
+        XCTAssertNotNil(client.requestedURL)
+    }
     
+
     // MARK: Helpers
     class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
