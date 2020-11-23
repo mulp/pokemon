@@ -105,7 +105,18 @@ class PokemonListLoaderTests: XCTestCase {
         }
     }
 
-    
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+
+        var capturedErrors = [PokemonListLoader.Error]()
+        sut.load { capturedErrors.append($0) }
+
+        let invalidJSON = Data("invalid json".utf8)
+        client.complete(withStatusCode: 200, data: invalidJSON)
+
+        XCTAssertEqual(capturedErrors, [.invalidData])
+    }
+
     // MARK: Helpers
     func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
