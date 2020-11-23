@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ListItem {
+public struct ListItem: Equatable {
     let image: String
     let name: String
 }

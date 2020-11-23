@@ -20,6 +20,8 @@ protocol HTTPClient {
 class PokemonListLoader {
     let client: HTTPClient
     let url: URL
+
+    typealias Result = Swift.Result<[ListItem], Error>
     
     public enum Error: Swift.Error {
         case connectivity
@@ -31,13 +33,13 @@ class PokemonListLoader {
         self.client = client
     }
     
-    func load(completion: @escaping (Error) -> Void) {
+    func load(completion: @escaping (PokemonListLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
             case .success:
-                completion(.invalidData)
+                completion(.failure(.invalidData))
             case .failure:
-                completion(.connectivity)
+                completion(.failure(.connectivity))
             }
         }
     }
@@ -119,12 +121,12 @@ class PokemonListLoaderTests: XCTestCase {
                         toCompleteWithError error: PokemonListLoader.Error,
                         when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         
-        var capturedErrors = [PokemonListLoader.Error]()
-        sut.load { capturedErrors.append($0) }
+        var capturedResults = [PokemonListLoader.Result]()
+        sut.load { capturedResults.append($0) }
         
         action()
         
-        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     class HTTPClientSpy: HTTPClient {
