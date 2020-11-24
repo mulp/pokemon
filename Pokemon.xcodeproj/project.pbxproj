@@ -16,6 +16,7 @@
 		252CC6B2256C572B0031EB0F /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252CC6B1256C572B0031EB0F /* ListItem.swift */; };
 		255EC3A6256D00230045C2F1 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3A5256D00230045C2F1 /* HTTPClient.swift */; };
 		255EC3AC256D00420045C2F1 /* PokemonListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3AB256D00420045C2F1 /* PokemonListLoader.swift */; };
+		255EC3B0256D47DB0045C2F1 /* ListItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3AF256D47DB0045C2F1 /* ListItemsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		252CC6B1256C572B0031EB0F /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		255EC3A5256D00230045C2F1 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		255EC3AB256D00420045C2F1 /* PokemonListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListLoader.swift; sourceTree = "<group>"; };
+		255EC3AF256D47DB0045C2F1 /* ListItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			children = (
 				255EC3A5256D00230045C2F1 /* HTTPClient.swift */,
 				255EC3AB256D00420045C2F1 /* PokemonListLoader.swift */,
+				255EC3AF256D47DB0045C2F1 /* ListItemsMapper.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				252CC6B2256C572B0031EB0F /* ListItem.swift in Sources */,
 				255EC3A6256D00230045C2F1 /* HTTPClient.swift in Sources */,
 				255EC3AC256D00420045C2F1 /* PokemonListLoader.swift in Sources */,
+				255EC3B0256D47DB0045C2F1 /* ListItemsMapper.swift in Sources */,
 				252CC677256C53010031EB0F /* ViewController.swift in Sources */,
 				252CC673256C53010031EB0F /* AppDelegate.swift in Sources */,
 				252CC675256C53010031EB0F /* SceneDelegate.swift in Sources */,
