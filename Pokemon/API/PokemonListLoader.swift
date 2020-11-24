@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class PokemonListLoader {
+public class PokemonListLoader: ListLoader {
     let client: HTTPClient
     let url: URL
 
