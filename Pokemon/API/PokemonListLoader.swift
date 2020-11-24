@@ -27,9 +27,10 @@ public class PokemonListLoader {
         client.get(from: url) { result in
             switch result {
             case let .success(data, response):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.results.map { $0.item } ))
-                } else {
+                do {
+                    let items = try ListItemsMapper.map(data, response)
+                    completion(.success(items))
+                } catch {
                     completion(.failure(.invalidData))
                 }
             case .failure:
@@ -39,15 +40,26 @@ public class PokemonListLoader {
     }
 }
 
-private struct Root: Decodable {
-    let results: [Item]
-}
+private class ListItemsMapper {
+    private struct Root: Decodable {
+        let results: [Item]
+    }
 
-private struct Item: Decodable {
-    let name: String
-    let image: URL
+    private struct Item: Decodable {
+        let name: String
+        let image: URL
 
-    var item: ListItem {
-        return ListItem(name: name, image: image)
+        var item: ListItem {
+            return ListItem(name: name, image: image)
+        }
+    }
+
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [ListItem] {
+        guard response.statusCode == 200 else {
+            throw PokemonListLoader.Error.invalidData
+        }
+
+        let root = try JSONDecoder().decode(Root.self, from: data)
+        return root.results.map { $0.item }
     }
 }
