@@ -100,7 +100,7 @@
 		252CC688256C53030031EB0F /* PokemonTests */ = {
 			isa = PBXGroup;
 			children = (
-				252CC689256C53030031EB0F /* PokemonListLoaderTests.swift */,
+				255EC3B3256D4B2C0045C2F1 /* ListAPI */,
 				252CC68B256C53030031EB0F /* Info.plist */,
 			);
 			path = PokemonTests;
@@ -122,6 +122,14 @@
 				255EC3AF256D47DB0045C2F1 /* ListItemsMapper.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		255EC3B3256D4B2C0045C2F1 /* ListAPI */ = {
+			isa = PBXGroup;
+			children = (
+				252CC689256C53030031EB0F /* PokemonListLoaderTests.swift */,
+			);
+			path = ListAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
