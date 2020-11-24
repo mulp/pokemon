@@ -8,8 +8,8 @@
 import Foundation
 
 public struct ListItem: Equatable {
-    let name: String
-    let image: URL
+    public let name: String
+    public let image: URL
     
     public init(name: String, image: URL) {
         self.name = name

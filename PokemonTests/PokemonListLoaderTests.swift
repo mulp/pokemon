@@ -6,62 +6,7 @@
 //
 
 import XCTest
-@testable import Pokemon
-
-public enum HTTPClientResult {
-    case success(Data, HTTPURLResponse)
-    case failure(Error)
-}
-
-protocol HTTPClient {
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
-}
-
-class PokemonListLoader {
-    let client: HTTPClient
-    let url: URL
-
-    typealias Result = Swift.Result<[ListItem], Error>
-    
-    public enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    func load(completion: @escaping (PokemonListLoader.Result) -> Void) {
-        client.get(from: url) { result in
-            switch result {
-            case let .success(data, response):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.results.map { $0.item } ))
-                } else {
-                    completion(.failure(.invalidData))
-                }
-            case .failure:
-                completion(.failure(.connectivity))
-            }
-        }
-    }
-}
-
-private struct Root: Decodable {
-    let results: [Item]
-}
-
-private struct Item: Decodable {
-    let name: String
-    let image: URL
-
-    var item: ListItem {
-        return ListItem(name: name, image: image)
-    }
-}
-
+import Pokemon
 
 class PokemonListLoaderTests: XCTestCase {
 
