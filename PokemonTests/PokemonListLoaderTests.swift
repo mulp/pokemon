@@ -106,10 +106,19 @@ class PokemonListLoaderTests: XCTestCase {
     }
 
     // MARK: Helpers
-    func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
+    func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!,
+                 file: StaticString = #filePath, line: UInt = #line) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = PokemonListLoader(url: url, client: client)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     private func expect(_ sut: PokemonListLoader,
