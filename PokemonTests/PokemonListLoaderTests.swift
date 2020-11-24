@@ -105,6 +105,21 @@ class PokemonListLoaderTests: XCTestCase {
         }
     }
 
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: PokemonListLoader? = PokemonListLoader(url: url, client: client)
+
+        var capturedResults = [PokemonListLoader.Result]()
+        sut?.load { capturedResults.append($0) }
+
+        sut = nil
+        let emptyListJSON = Data("{\"results\": []}".utf8)
+        client.complete(withStatusCode: 200, data: emptyListJSON)
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+
     // MARK: Helpers
     func makeSUT(url: URL = URL(string: "http://a-valid.url.com")!,
                  file: StaticString = #filePath, line: UInt = #line) -> (sut: PokemonListLoader, client: HTTPClientSpy) {
