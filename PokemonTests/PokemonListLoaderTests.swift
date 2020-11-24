@@ -36,9 +36,9 @@ class PokemonListLoader {
     func load(completion: @escaping (PokemonListLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case let .success(data, _):
-                if let _ = try? JSONSerialization.jsonObject(with: data) {
-                    completion(.success([]))
+            case let .success(data, response):
+                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+                    completion(.success(root.results.map { $0.item } ))
                 } else {
                     completion(.failure(.invalidData))
                 }
@@ -48,6 +48,20 @@ class PokemonListLoader {
         }
     }
 }
+
+private struct Root: Decodable {
+    let results: [Item]
+}
+
+private struct Item: Decodable {
+    let name: String
+    let image: URL
+
+    var item: ListItem {
+        return ListItem(name: name, image: image)
+    }
+}
+
 
 class PokemonListLoaderTests: XCTestCase {
 
@@ -120,6 +134,29 @@ class PokemonListLoaderTests: XCTestCase {
         expect(sut, toCompleteWithResult: .success([])) {
             let emptyListJSON = Data("{\"results\": []}".utf8)
             client.complete(withStatusCode: 200, data: emptyListJSON)
+        }
+    }
+
+    func test_load_deliversItemsOn200HTTPResponseWithJSONList() {
+        let (sut, client) = makeSUT()
+
+        let item1 = ListItem(name: "a name", image: URL(string: "http://a-valid-url.com")!)
+        let item1JSON = [
+            "name": item1.name,
+            "image": item1.image.absoluteString
+        ]
+        
+        let item2 = ListItem(name: "another name", image: URL(string: "http://a-valid-url.com")!)
+        let item2JSON = [
+            "name": item2.name,
+            "image": item2.image.absoluteString
+        ]
+
+        let json = ["results": [item1JSON, item2JSON]]
+        
+        expect(sut, toCompleteWithResult: .success([item1, item2])) {
+            let jsonList = try! JSONSerialization.data(withJSONObject: json)
+            client.complete(withStatusCode: 200, data: jsonList)
         }
     }
 
