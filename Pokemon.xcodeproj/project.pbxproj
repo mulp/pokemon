@@ -21,6 +21,7 @@
 		255EC3BF256D53720045C2F1 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3BE256D53720045C2F1 /* URLSessionHTTPClientTests.swift */; };
 		255EC3C3256D57EC0045C2F1 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3C2256D57EC0045C2F1 /* URLSessionHTTPClient.swift */; };
 		255EC3C8256D589E0045C2F1 /* XCTestCase+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3C7256D589E0045C2F1 /* XCTestCase+Helper.swift */; };
+		255EC3D1256E80E10045C2F1 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255EC3D0256E80E10045C2F1 /* ListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		255EC3BE256D53720045C2F1 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		255EC3C2256D57EC0045C2F1 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		255EC3C7256D589E0045C2F1 /* XCTestCase+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helper.swift"; sourceTree = "<group>"; };
+		255EC3D0256E80E10045C2F1 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				255EC3C6256D58850045C2F1 /* Helper */,
 				255EC3B3256D4B2C0045C2F1 /* ListAPI */,
+				255EC3CF256E80B20045C2F1 /* ListFeature */,
 				252CC68B256C53030031EB0F /* Info.plist */,
 			);
 			path = PokemonTests;
@@ -150,6 +153,14 @@
 				255EC3C7256D589E0045C2F1 /* XCTestCase+Helper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		255EC3CF256E80B20045C2F1 /* ListFeature */ = {
+			isa = PBXGroup;
+			children = (
+				255EC3D0256E80E10045C2F1 /* ListViewModelTests.swift */,
+			);
+			path = ListFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +280,7 @@
 			files = (
 				252CC68A256C53030031EB0F /* PokemonListLoaderTests.swift in Sources */,
 				255EC3BF256D53720045C2F1 /* URLSessionHTTPClientTests.swift in Sources */,
+				255EC3D1256E80E10045C2F1 /* ListViewModelTests.swift in Sources */,
 				255EC3C8256D589E0045C2F1 /* XCTestCase+Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
