@@ -11,7 +11,7 @@ public class PokemonListLoader: ListLoader {
     let client: HTTPClient
     let url: URL
 
-    public typealias Result = Swift.Result<[ListItem], Error>
+    public typealias Result = Swift.Result<[ListItem], PokemonListLoader.Error>
     
     public enum Error: Swift.Error {
         case connectivity
