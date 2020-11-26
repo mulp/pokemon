@@ -26,6 +26,7 @@
 		25EA3107256FE50A00AA6C52 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA3106256FE50A00AA6C52 /* ListItemTableViewCell.swift */; };
 		25EA310C256FE5EE00AA6C52 /* UIImage+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA310B256FE5EE00AA6C52 /* UIImage+Downloader.swift */; };
 		25EA3110256FE65800AA6C52 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA310F256FE65800AA6C52 /* UIViewController+Alert.swift */; };
+		25EA31222570531500AA6C52 /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA31212570531500AA6C52 /* DetailItem.swift */; };
 		60F85B0E524DBDB1BC45AC22 /* Pods_Pokemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7A25BC389FF759D844AE60 /* Pods_Pokemon.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		25EA3106256FE50A00AA6C52 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		25EA310B256FE5EE00AA6C52 /* UIImage+Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Downloader.swift"; sourceTree = "<group>"; };
 		25EA310F256FE65800AA6C52 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		25EA31212570531500AA6C52 /* DetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItem.swift; sourceTree = "<group>"; };
 		6F24D45F23EE4DFB9F2B96A9 /* Pods_PokemonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FE03FB8081D521E3E1C306 /* Pods-PokemonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonTests.release.xcconfig"; path = "Target Support Files/Pods-PokemonTests/Pods-PokemonTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC3F49008C32F550AAA97B8 /* Pods-PokemonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonTests.debug.xcconfig"; path = "Target Support Files/Pods-PokemonTests/Pods-PokemonTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				252CC6B1256C572B0031EB0F /* ListItem.swift */,
 				255EC3BA256D4B940045C2F1 /* ListLoader.swift */,
+				25EA31212570531500AA6C52 /* DetailItem.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25EA3103256FE3F200AA6C52 /* ListViewModel.swift in Sources */,
+				25EA31222570531500AA6C52 /* DetailItem.swift in Sources */,
 				252CC6B2256C572B0031EB0F /* ListItem.swift in Sources */,
 				25EA310C256FE5EE00AA6C52 /* UIImage+Downloader.swift in Sources */,
 				25EA3110256FE65800AA6C52 /* UIViewController+Alert.swift in Sources */,
