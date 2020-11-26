@@ -22,6 +22,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.alpha = 1
+        tableView.rowHeight = 50.0
         return tableView
     }()
     private let spinner: UIActivityIndicatorView = {

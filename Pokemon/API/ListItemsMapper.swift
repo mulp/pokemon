@@ -17,7 +17,7 @@ final class ListItemsMapper {
         let url: String
 
         var item: ListItem {
-            return ListItem(name: name, image: URL(string: url)!)
+            return ListItem(name: name, targetURL: URL(string: url)!)
         }
     }
 

@@ -73,8 +73,8 @@ class ListViewModelTests: XCTestCase {
     }
     
     private class PokemonListStub {
-        private static let item1 = ListItem(name: "a name", image: URL(string: "http://a-valid-url.com")!)
-        private static let item2 = ListItem(name: "another name", image: URL(string: "http://a-valid-url.com")!)
+        private static let item1 = ListItem(name: "a name", targetURL: URL(string: "http://a-valid-url.com")!)
+        private static let item2 = ListItem(name: "another name", targetURL: URL(string: "http://a-valid-url.com")!)
 
         static var items: [ListItem] {
             return [item1, item2]

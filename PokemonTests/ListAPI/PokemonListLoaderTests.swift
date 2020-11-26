@@ -85,16 +85,16 @@ class PokemonListLoaderTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponseWithJSONList() {
         let (sut, client) = makeSUT()
 
-        let item1 = ListItem(name: "a name", image: URL(string: "http://a-valid-url.com")!)
+        let item1 = ListItem(name: "a name", targetURL: URL(string: "http://a-valid-url.com")!)
         let item1JSON = [
             "name": item1.name,
-            "url": item1.image.absoluteString
+            "url": item1.targetURL.absoluteString
         ]
         
-        let item2 = ListItem(name: "another name", image: URL(string: "http://a-valid-url.com")!)
+        let item2 = ListItem(name: "another name", targetURL: URL(string: "http://a-valid-url.com")!)
         let item2JSON = [
             "name": item2.name,
-            "url": item2.image.absoluteString
+            "url": item2.targetURL.absoluteString
         ]
 
         let json = ["results": [item1JSON, item2JSON]]

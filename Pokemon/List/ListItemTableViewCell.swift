@@ -59,7 +59,6 @@ class ListItemTableViewCell: UITableViewCell {
     }
     
     func configure(with item: ListItem) {
-        avatarImage.download(from: item.image)
         nameLabel.text = item.name
     }
 }

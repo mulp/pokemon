@@ -9,10 +9,10 @@ import Foundation
 
 public struct ListItem: Equatable {
     public let name: String
-    public let image: URL
+    public let targetURL: URL
     
-    public init(name: String, image: URL) {
+    public init(name: String, targetURL: URL) {
         self.name = name
-        self.image = image
+        self.targetURL = targetURL
     }
 }
