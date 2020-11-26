@@ -42,8 +42,8 @@ struct ListViewModel {
                 switch event {
                 case .next(let repos):
                     return .listFetched(repos)
-                case .error:
-                    return .listFetchError(PokemonListLoader.Error.invalidData)
+                case .error(let error):
+                    return .listFetchError(error as? PokemonListLoader.Error ?? PokemonListLoader.Error.unknown)
                 case .completed:
                     return .listSuccessfullyLoaded
                 }
@@ -68,25 +68,35 @@ struct ListViewModel {
 class ListViewModelTests: XCTestCase {
 
     func test_initialState() {
-        let (_, state) = makeSUT()
+        let (_, state, _) = makeSUT()
 
         XCTAssertEqual(state.values, [.listLoaded])
     }
     
     func test_performedRequest_includeRepoList() {
-        let (sut, state) = makeSUT()
+        let (sut, state, _) = makeSUT()
         
         sut.performRequest.accept(())
         
         XCTAssertEqual(state.values, [ .listLoaded, .listFetched(PokemonListStub.items), .listSuccessfullyLoaded])
     }
     
+    func test_performedRequestError_movesToErrorState() {
+        let (sut, state, loader) = makeSUT()
+        let error: PokemonListLoader.Error = .invalidData
+        loader.complete(with: error)
+        
+        sut.performRequest.accept(())
+        
+        XCTAssertEqual(state.values, [ .listLoaded, .listFetchError(error)])
+    }
+
     // MARK: Helpers
-    private func makeSUT() -> (sut: ListViewModel, state: StateSpy) {
+    private func makeSUT() -> (sut: ListViewModel, state: StateSpy, loader: PokemonListLoaderStub) {
         let loader = PokemonListLoaderStub()
         let sut = ListViewModel(with: loader)
         let state = StateSpy(sut.state)
-        return (sut, state)
+        return (sut, state, loader)
     }
     
     class StateSpy {
@@ -110,6 +120,10 @@ class ListViewModelTests: XCTestCase {
             } else {
                 return completion(.success(PokemonListStub.items))
             }
+        }
+        
+        func complete(with error: PokemonListLoader.Error) {
+            loaderError = error
         }
     }
     

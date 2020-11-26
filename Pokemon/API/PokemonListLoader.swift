@@ -16,6 +16,7 @@ public class PokemonListLoader: ListLoader {
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
+        case unknown
     }
 
     public init(url: URL, client: HTTPClient) {
