@@ -134,10 +134,10 @@
 		252CC671256C53010031EB0F /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
-				25EA313C2570652F00AA6C52 /* Features */,
 				25EA310A256FE5D700AA6C52 /* Extension */,
 				255EC3A4256D00000045C2F1 /* API */,
 				252CC6B0256C570A0031EB0F /* Domain */,
+				25EA313C2570652F00AA6C52 /* Features */,
 				252CC672256C53010031EB0F /* AppDelegate.swift */,
 				252CC67B256C53030031EB0F /* Assets.xcassets */,
 				252CC67D256C53030031EB0F /* LaunchScreen.storyboard */,
@@ -230,9 +230,17 @@
 		25EA313C2570652F00AA6C52 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				25EA31472570671800AA6C52 /* Detail */,
 				25EA30F6256FE29900AA6C52 /* List */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		25EA31472570671800AA6C52 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		CA68AC3DB192096A4FF27BF3 /* Pods */ = {
