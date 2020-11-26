@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		19574760D5FD8D38EFA57E8C /* Pods_PokemonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F24D45F23EE4DFB9F2B96A9 /* Pods_PokemonTests.framework */; };
 		252CC673256C53010031EB0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252CC672256C53010031EB0F /* AppDelegate.swift */; };
-		252CC675256C53010031EB0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252CC674256C53010031EB0F /* SceneDelegate.swift */; };
 		252CC677256C53010031EB0F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252CC676256C53010031EB0F /* ListViewController.swift */; };
 		252CC67C256C53030031EB0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252CC67B256C53030031EB0F /* Assets.xcassets */; };
 		252CC67F256C53030031EB0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252CC67D256C53030031EB0F /* LaunchScreen.storyboard */; };
@@ -44,7 +43,6 @@
 		07F72BB7EC71C33D37D36A07 /* Pods-Pokemon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.debug.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.debug.xcconfig"; sourceTree = "<group>"; };
 		252CC66F256C53010031EB0F /* Pokemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		252CC672256C53010031EB0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		252CC674256C53010031EB0F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		252CC676256C53010031EB0F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		252CC67B256C53030031EB0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		252CC67E256C53030031EB0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				255EC3A4256D00000045C2F1 /* API */,
 				252CC6B0256C570A0031EB0F /* Domain */,
 				252CC672256C53010031EB0F /* AppDelegate.swift */,
-				252CC674256C53010031EB0F /* SceneDelegate.swift */,
 				252CC67B256C53030031EB0F /* Assets.xcassets */,
 				252CC67D256C53030031EB0F /* LaunchScreen.storyboard */,
 				252CC680256C53030031EB0F /* Info.plist */,
@@ -399,7 +396,6 @@
 				252CC677256C53010031EB0F /* ListViewController.swift in Sources */,
 				252CC673256C53010031EB0F /* AppDelegate.swift in Sources */,
 				255EC3BB256D4B940045C2F1 /* ListLoader.swift in Sources */,
-				252CC675256C53010031EB0F /* SceneDelegate.swift in Sources */,
 				25EA3107256FE50A00AA6C52 /* ListItemTableViewCell.swift in Sources */,
 				255EC3C3256D57EC0045C2F1 /* URLSessionHTTPClient.swift in Sources */,
 			);
@@ -562,6 +558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Pokemon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,6 +578,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Pokemon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
