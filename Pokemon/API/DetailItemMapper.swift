@@ -18,18 +18,30 @@ final class DetailItemMapper {
         var detail: DetailItem {
             let detailStats = stats.map { Stats(baseStats: $0.baseStats, name: $0.stat.name) }
             let detailsTypes = types.map { Types(slot: $0.slot, name: $0.type.name) }
-            return DetailItem(id: id, name: name, image: sprites.frontDefault, stats: detailStats, types: detailsTypes)
+            return DetailItem(id: id, name: name, image: sprites.other.officialArtwork.frontDefault, stats: detailStats, types: detailsTypes)
         }
     }
     
     private struct Sprite: Decodable {
+        let other: Other
+    }
+    
+    private struct Other: Decodable {
+        let officialArtwork: OfficialArtwork
+        
+        private enum CodingKeys: String, CodingKey {
+            case officialArtwork = "official-artwork"
+        }
+    }
+
+    private struct OfficialArtwork: Decodable {
         let frontDefault: String
         
-        private enum CodingKeys : String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case frontDefault = "front_default"
         }
     }
-    
+
     private struct ItemStats: Decodable {
         let baseStats: Int
         let stat: ItemStat

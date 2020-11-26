@@ -153,11 +153,18 @@ class PokemonDetailLoaderTests: XCTestCase {
             ]
         ]
 
+        let sprites: [String: Any] = [
+            "other": [
+                "official-artwork": [
+                    "front_default": "http://a-valid-url.com"
+                ]
+            ]
+        ]
         let item = DetailItem(id: 1, name: "a name", image: "http://a-valid-url.com", stats: [stat1, stat2], types: [type1, type2])
         let json: [String: Any] = [
             "id": 1,
             "name": item.name,
-            "sprites": ["front_default": item.image],
+            "sprites": sprites,
             "stats": [stat1JSON, stat2JSON],
             "types": [type1JSON, type2JSON]
         ]

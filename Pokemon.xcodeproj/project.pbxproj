@@ -227,17 +227,9 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		25EA313B2570652300AA6C52 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
 		25EA313C2570652F00AA6C52 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				25EA313B2570652300AA6C52 /* Detail */,
 				25EA30F6256FE29900AA6C52 /* List */,
 			);
 			path = Features;
