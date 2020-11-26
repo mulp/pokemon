@@ -14,10 +14,10 @@ final class ListItemsMapper {
 
     private struct Item: Decodable {
         let name: String
-        let image: URL
+        let url: String
 
         var item: ListItem {
-            return ListItem(name: name, image: image)
+            return ListItem(name: name, image: URL(string: url)!)
         }
     }
 

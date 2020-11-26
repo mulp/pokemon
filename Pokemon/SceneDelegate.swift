@@ -19,12 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let controller = ListViewController()
-        let navigationController = UINavigationController(rootViewController: controller)
-        window.rootViewController = navigationController
+        window.rootViewController = UINavigationController(rootViewController: makeMainController())
         
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    private func makeMainController() -> UIViewController {
+        let httpClient = URLSessionHTTPClient()
+        let pokemonListURL = URL(string: PokemonListLoader.Constants.PokemonListURL)!
+        let remoteLoader = PokemonListLoader(url: pokemonListURL, client: httpClient)
+        let viewModel = ListViewModel(with: remoteLoader)
+        
+        return ListViewController(viewModel: viewModel)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

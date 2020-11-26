@@ -24,6 +24,10 @@ public class PokemonListLoader: ListLoader {
         self.client = client
     }
     
+    public struct Constants {
+        static let PokemonListURL = "https://pokeapi.co/api/v2/pokemon/"
+    }
+
     public func load(completion: @escaping (PokemonListLoader.Result) -> Void) {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }

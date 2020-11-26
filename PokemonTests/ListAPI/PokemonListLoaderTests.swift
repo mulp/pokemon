@@ -88,13 +88,13 @@ class PokemonListLoaderTests: XCTestCase {
         let item1 = ListItem(name: "a name", image: URL(string: "http://a-valid-url.com")!)
         let item1JSON = [
             "name": item1.name,
-            "image": item1.image.absoluteString
+            "url": item1.image.absoluteString
         ]
         
         let item2 = ListItem(name: "another name", image: URL(string: "http://a-valid-url.com")!)
         let item2JSON = [
             "name": item2.name,
-            "image": item2.image.absoluteString
+            "url": item2.image.absoluteString
         ]
 
         let json = ["results": [item1JSON, item2JSON]]
