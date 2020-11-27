@@ -12,7 +12,8 @@ class ListItemTableViewCell: UITableViewCell {
     
     private let avatarImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "pokemon-logo")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -27,6 +28,7 @@ class ListItemTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fill
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
