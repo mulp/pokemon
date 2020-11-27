@@ -12,4 +12,7 @@ any external library which in same case may be useful.
 I also tried to apply SOLID principles to have a better separation of responsibilities and avoid leaking implementation
 details there where they are not needed.
 
+Side notes:
 
+For the sake of the test I have choosen to use the default API to request the list of pokemon, which returns 20
+items if no other parameter is specified. Based on the API, would be possible to realise also pagination.
