@@ -31,8 +31,8 @@ public class PokemonDetailLoader: DetailLoader {
             switch result {
             case let .success(data, response):
                 do {
-                    let items = try DetailItemMapper.map(data, response)
-                    completion(.success(items))
+                    let detail = try DetailItemMapper.map(data, response)
+                    completion(.success(detail))
                 } catch {
                     completion(.failure(.invalidData))
                 }

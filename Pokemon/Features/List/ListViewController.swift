@@ -5,13 +5,6 @@
 //  Created by Fabio Cuomo on 23/11/2020.
 //
 
-//
-//  RepoListViewController.swift
-//  XingTest
-//
-//  Created by Fabio Cuomo on 20/08/2020.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -121,6 +114,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - UITableView Delegate methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = dataSource[indexPath.row]
+        if let pokemDetailURL = model.targetURL {
+            let controller = makeDetailController(with: pokemDetailURL)
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+
+    private func makeDetailController(with pokemonListURL: URL) -> UIViewController {
+        let httpClient = URLSessionHTTPClient()
+        let remoteLoader = PokemonDetailLoader(url: pokemonListURL, client: httpClient)
+        let viewModel = DetailViewModel(with: remoteLoader)
         
+        return DetailViewController(viewModel: viewModel)
     }
 }
